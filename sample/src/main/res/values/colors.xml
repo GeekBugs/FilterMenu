@@ -3,4 +3,10 @@
   <color name="colorPrimary">#3F51B5</color>
   <color name="colorPrimaryDark">#303F9F</color>
   <color name="colorAccent">#FF4081</color>
+
+  <color name="line">#DDDDDD</color>
+  <color name="bg_filter_transparent">#66000000</color>
+  <color name="white">#FFFFFF</color>
+  <color name="drop_down_unselected">#555555</color>
+  <color name="bg_filter">#F0F1F4</color>
 </resources>
