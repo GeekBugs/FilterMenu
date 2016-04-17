@@ -2,6 +2,7 @@ package com.f1reking.filtermenu;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -21,18 +22,18 @@ import java.util.List;
  */
 public class FilterMenu extends LinearLayout {
 
-    private LinearLayout tabMenuView;//顶部菜单布局
-    private FrameLayout containerView;//底部容器，包含popupMenuViews，maskView
-    private FrameLayout popupMenuViews;//弹出菜单父布局
-    private View maskView;//遮罩半透明View，点击可关闭FilterMenu
-    private int current_tab_position = -1;//tabMenuView里面选中的tab位置，-1表示未选中
-    private int dividerColor = 0xffcccccc;//分割线颜色
-    private int textSelectedColor = 0xff890c85;//tab选中颜
-    private int textUnselectedColor = 0xff111111;//tab未选中颜色
-    private int maskColor = 0x88888888;//遮罩颜色
-    private int menuTextSize = 14;//tab字体大小
-    private int menuSelectedIcon;//tab选中图标
-    private int menuUnselectedIcon;//tab未选中图标
+    private LinearLayout tabMenuView;
+    private FrameLayout containerView;
+    private FrameLayout popupMenuViews;
+    private View maskView;
+    private int current_tab_position = -1;
+    private int dividerColor = 0xffcccccc;
+    private int textSelectedColor = 0xff890c85;
+    private int textUnselectedColor = 0xff111111;
+    private int maskColor = 0x88888888;
+    private int menuTextSize = 14;
+    private int menuSelectedIcon;
+    private int menuUnselectedIcon;
     private int menuBackgroundColor = 0xffffffff;
     private int underlineColor = 0xffcccccc;
     private Context context;
@@ -57,18 +58,23 @@ public class FilterMenu extends LinearLayout {
         underlineColor = a.getColor(R.styleable.FilterMenu_underlineColor, underlineColor);
         dividerColor = a.getColor(R.styleable.FilterMenu_dividerColor, dividerColor);
         textSelectedColor = a.getColor(R.styleable.FilterMenu_textSelectedColor, textSelectedColor);
-        textUnselectedColor = a.getColor(R.styleable.FilterMenu_textUnselectedColor, textUnselectedColor);
-        menuBackgroundColor = a.getColor(R.styleable.FilterMenu_menuBackgroundColor, menuBackgroundColor);
+        textUnselectedColor =
+            a.getColor(R.styleable.FilterMenu_textUnselectedColor, textUnselectedColor);
+        menuBackgroundColor =
+            a.getColor(R.styleable.FilterMenu_menuBackgroundColor, menuBackgroundColor);
         maskColor = a.getColor(R.styleable.FilterMenu_maskColor, maskColor);
         menuTextSize = a.getDimensionPixelSize(R.styleable.FilterMenu_menuTextSize, menuTextSize);
-        menuSelectedIcon = a.getResourceId(R.styleable.FilterMenu_menuSelectedIcon, menuSelectedIcon);
-        menuUnselectedIcon = a.getResourceId(R.styleable.FilterMenu_menuUnselectedIcon, menuUnselectedIcon);
+        menuSelectedIcon =
+            a.getResourceId(R.styleable.FilterMenu_menuSelectedIcon, menuSelectedIcon);
+        menuUnselectedIcon =
+            a.getResourceId(R.styleable.FilterMenu_menuUnselectedIcon, menuUnselectedIcon);
         a.recycle();
 
         //init tabMenuView
         tabMenuView = new LinearLayout(context);
         LinearLayout.LayoutParams params =
-            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
         tabMenuView.setOrientation(HORIZONTAL);
         tabMenuView.setBackgroundColor(menuBackgroundColor);
         tabMenuView.setLayoutParams(params);
@@ -76,14 +82,16 @@ public class FilterMenu extends LinearLayout {
 
         //add underLine
         View underLine = new View(getContext());
-        underLine.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpTpPx(0.5f)));
+        underLine.setLayoutParams(
+            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpTpPx(0.5f)));
         underLine.setBackgroundColor(underlineColor);
         addView(underLine, 1);
 
         // init containerView
         containerView = new FrameLayout(context);
         containerView.setLayoutParams(
-            new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+            new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
         addView(containerView, 2);
     }
 
@@ -92,7 +100,8 @@ public class FilterMenu extends LinearLayout {
      */
     public void setFilterMenu(List<String> tabTexts, List<View> popupViews, View contentView) {
         if (tabTexts.size() != popupViews.size()) {
-            throw new IllegalArgumentException("params not match, tabTexts.size() should be equal popupViews.size()");
+            throw new IllegalArgumentException(
+                "params not match, tabTexts.size() should be equal popupViews.size()");
         }
 
         for (int i = 0; i < tabTexts.size(); i++) {
@@ -101,8 +110,8 @@ public class FilterMenu extends LinearLayout {
         containerView.addView(contentView, 0);
 
         maskView = new View(getContext());
-        maskView.setLayoutParams(
-            new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        maskView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT));
         maskView.setBackgroundColor(maskColor);
         maskView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -118,8 +127,8 @@ public class FilterMenu extends LinearLayout {
 
         for (int i = 0; i < popupViews.size(); i++) {
             popupViews.get(i)
-                .setLayoutParams(
-                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                .setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
             popupMenuViews.addView(popupViews.get(i), i);
         }
     }
@@ -130,10 +139,11 @@ public class FilterMenu extends LinearLayout {
         tab.setEllipsize(TextUtils.TruncateAt.END);
         tab.setGravity(Gravity.CENTER);
         tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, menuTextSize);
-        tab.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
+        tab.setLayoutParams(
+            new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
         tab.setTextColor(textUnselectedColor);
-        tab.setCompoundDrawablesWithIntrinsicBounds(null, null, context.getResources().getDrawable(menuUnselectedIcon),
-            null);
+        tab.setCompoundDrawablesWithIntrinsicBounds(null, null,
+            ContextCompat.getDrawable(context, menuUnselectedIcon), null);
         tab.setText(tabTexts.get(i));
         tab.setPadding(dpTpPx(5), dpTpPx(12), dpTpPx(5), dpTpPx(12));
         tab.setOnClickListener(new View.OnClickListener() {
@@ -174,13 +184,17 @@ public class FilterMenu extends LinearLayout {
      */
     public void closeMenu() {
         if (current_tab_position != -1) {
-            ((TextView) tabMenuView.getChildAt(current_tab_position)).setTextColor(textUnselectedColor);
-            ((TextView) tabMenuView.getChildAt(current_tab_position)).setCompoundDrawablesWithIntrinsicBounds(null,
-                null, getResources().getDrawable(menuUnselectedIcon), null);
+            ((TextView) tabMenuView.getChildAt(current_tab_position)).setTextColor(
+                textUnselectedColor);
+            ((TextView) tabMenuView.getChildAt(
+                current_tab_position)).setCompoundDrawablesWithIntrinsicBounds(null, null,
+                ContextCompat.getDrawable(context, menuUnselectedIcon), null);
             popupMenuViews.setVisibility(View.GONE);
-            popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.filter_menu_out));
+            popupMenuViews.setAnimation(
+                AnimationUtils.loadAnimation(getContext(), R.anim.filter_menu_out));
             maskView.setVisibility(GONE);
-            maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.filter_mask_out));
+            maskView.setAnimation(
+                AnimationUtils.loadAnimation(getContext(), R.anim.filter_mask_out));
             current_tab_position = -1;
         }
     }
@@ -204,22 +218,24 @@ public class FilterMenu extends LinearLayout {
                 } else {
                     if (current_tab_position == -1) {
                         popupMenuViews.setVisibility(View.VISIBLE);
-                        popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.filter_menu_in));
+                        popupMenuViews.setAnimation(
+                            AnimationUtils.loadAnimation(getContext(), R.anim.filter_menu_in));
                         maskView.setVisibility(VISIBLE);
-                        maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.filter_mask_in));
+                        maskView.setAnimation(
+                            AnimationUtils.loadAnimation(getContext(), R.anim.filter_mask_in));
                         popupMenuViews.getChildAt(i / 2).setVisibility(View.VISIBLE);
                     } else {
                         popupMenuViews.getChildAt(i / 2).setVisibility(View.VISIBLE);
                     }
                     current_tab_position = i;
                     ((TextView) tabMenuView.getChildAt(i)).setTextColor(textSelectedColor);
-                    ((TextView) tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(null, null,
-                        getResources().getDrawable(menuSelectedIcon), null);
+                    ((TextView) tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(
+                        null, null, ContextCompat.getDrawable(context, menuSelectedIcon), null);
                 }
             } else {
                 ((TextView) tabMenuView.getChildAt(i)).setTextColor(textUnselectedColor);
-                ((TextView) tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(null, null,
-                    getResources().getDrawable(menuUnselectedIcon), null);
+                ((TextView) tabMenuView.getChildAt(i)).setCompoundDrawablesWithIntrinsicBounds(null,
+                    null, ContextCompat.getDrawable(context, menuUnselectedIcon), null);
                 popupMenuViews.getChildAt(i / 2).setVisibility(View.GONE);
             }
         }
@@ -232,6 +248,8 @@ public class FilterMenu extends LinearLayout {
 
     /**
      * Get the width of the screen
+     *
+     * @return int
      */
     public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

@@ -31,7 +31,7 @@ dependencies {
 
 def siteUrl = 'https://github.com/F1ReKing/FilterMenu'
 def gitUrl = 'git@github.com:F1ReKing/FilterMenu.git'
-group = "com.f1reking.filtermenu" // Maven Group ID for the artifact，
+group = "com.f1reking.library" // Maven Group ID for the artifact，
 install {
   repositories.mavenInstaller {
     // This generates POM.xml with proper parameters
@@ -73,7 +73,7 @@ task javadoc(type: Javadoc) {
   classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
-task javadocJar(type: Jar, dependsOn: Javadoc) {
+task javadocJar(type: Jar, dependsOn: javadoc) {
   classifier = 'javadoc'
   from javadoc.destinationDir
 }
@@ -90,7 +90,7 @@ bintray {
   configurations = ['archives']
   pkg {
     repo = "maven"
-    name = "FilterMenu" //发布到JCenter上的项目名字
+    name = "filter-menu"
     websiteUrl = siteUrl
     vcsUrl = gitUrl
     licenses = ["Apache-2.0"]
