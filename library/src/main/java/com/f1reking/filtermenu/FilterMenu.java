@@ -1,4 +1,4 @@
-package com.f1reking.library;
+package com.f1reking.filtermenu;
 
 import android.content.Context;
 import android.content.res.TypedArray;

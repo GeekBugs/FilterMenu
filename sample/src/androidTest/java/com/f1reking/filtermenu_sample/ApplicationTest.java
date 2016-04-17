@@ -1,4 +1,4 @@
-package com.f1reking.filtermenu;
+package com.f1reking.filtermenu_sample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.f1reking.filtermenu.model;
+package com.f1reking.filtermenu_sample.model;
 
 /**
  * Created by HuangYH on 2016/4/1.

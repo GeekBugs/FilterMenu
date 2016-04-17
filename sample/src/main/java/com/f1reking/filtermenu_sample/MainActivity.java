@@ -1,4 +1,4 @@
-package com.f1reking.filtermenu;
+package com.f1reking.filtermenu_sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.ListView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.f1reking.filtermenu.adapter.CommonAdapter;
-import com.f1reking.filtermenu.adapter.ViewHolder;
-import com.f1reking.filtermenu.model.Menu;
-import com.f1reking.library.FilterMenu;
+import com.f1reking.filtermenu_sample.adapter.CommonAdapter;
+import com.f1reking.filtermenu_sample.adapter.ViewHolder;
+import com.f1reking.filtermenu_sample.model.Menu;
+import com.f1reking.filtermenu.FilterMenu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

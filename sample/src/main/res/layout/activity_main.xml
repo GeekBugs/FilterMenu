@@ -7,7 +7,7 @@
     android:orientation="vertical"
     >
 
-  <com.f1reking.library.FilterMenu
+  <com.f1reking.filtermenu.FilterMenu
       android:id="@+id/filterMenu"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
