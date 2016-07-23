@@ -1,4 +1,4 @@
-package com.f1reking.filtermenu_sample.adapter;
+package me.f1reking.filtermenu_sample.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,23 +1,23 @@
-package com.f1reking.filtermenu_sample;
+package me.f1reking.filtermenu_sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.f1reking.filtermenu_sample.adapter.CommonAdapter;
-import com.f1reking.filtermenu_sample.adapter.ViewHolder;
-import com.f1reking.filtermenu_sample.model.Menu;
 import com.f1reking.filtermenu.FilterMenu;
+import me.f1reking.filtermenu_sample.adapter.CommonAdapter;
+import me.f1reking.filtermenu_sample.adapter.ViewHolder;
+import me.f1reking.filtermenu_sample.model.Menu;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.filterMenu) FilterMenu filterMenu;
+    @BindView(R.id.filterMenu) FilterMenu filterMenu;
 
     private ListView listCategoryLeft;
     private ListView listCategoryRight;
@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         listCategoryRight = (ListView) view.findViewById(R.id.lv_right_list);
 
         listOrderBy = new ListView(this);
-        listFilter = new ListView(this);
-
+        //listFilter = new ListView(this);
+        View filterView = getLayoutInflater().inflate(R.layout.layout_goods_filter, null);
         popupViews = new ArrayList<>();
         popupViews.add(view);
         popupViews.add(listOrderBy);
-        popupViews.add(listFilter);
+        popupViews.add(filterView);
 
         listContent = new ListView(this);
         listContent.setDividerHeight(1);

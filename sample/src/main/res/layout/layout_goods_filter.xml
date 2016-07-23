@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    >
+
+    <EditText
+        android:id="@+id/etPriceFrom"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#F5F5F5"
+        android:gravity="center"
+        android:hint="最低价"
+        android:inputType="numberDecimal"
+        android:textColor="#7F7F7F"
+        android:textSize="14sp"
+        />
+
+    <EditText
+        android:id="@+id/etPriceTo"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#F5F5F5"
+        android:gravity="center"
+        android:hint="最高价"
+        android:inputType="numberDecimal"
+        android:textColor="#7F7F7F"
+        android:textSize="14sp"
+        />
+</LinearLayout>
+
+
