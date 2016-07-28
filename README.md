@@ -15,7 +15,7 @@
 #### Step 2. Add the dependency
 ```
 	dependencies {
-	       compile 'com.github.F1ReKing:filterMenu:v1.0'
+	       compile 'com.github.F1ReKing:filterMenu:{lastest-version}'
 	}
 ```
 
